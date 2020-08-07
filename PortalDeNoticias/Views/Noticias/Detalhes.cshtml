@@ -1,0 +1,28 @@
+﻿<!-- a instrução model recebe um único objeto cujo os dados serão listados abaixo -->
+@model PortalDeNoticias.Models.Noticia
+
+@{
+    ViewBag.Title = "Detalhes da notícia";
+}
+
+@if (Model == null) 
+{
+    <h4>Notícia não encontrada</h4>     
+}
+else
+{
+    <h2>@Model.Titulo</h2>
+    
+    <p>Publicado por <strong>@Model.Autor</strong> em <strong>@Model.Data.ToString("dd/MM/yyyy")</strong></p>
+    
+    <p>@Model.Conteudo</p>
+    
+    <!-- 
+    Esse método (helper do Razor) mostra o nome da propriedade “Property” do Model da view, usa uma expressão lambda
+    (arroba)Html.DisplayNameFor(model => model.Titulo)
+    
+    Esse método (helper do Razor) mostra o valor da propriedade “Property” do Model da view, usa uma expressão lambda
+    Também possui uma variação que recebe um parâmetro string
+    (arroba)Html.DisplayFor(model => model.Titulo) OU (arroba)Html.Display("Titulo")    
+    -->
+}

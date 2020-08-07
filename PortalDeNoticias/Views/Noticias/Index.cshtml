@@ -1,0 +1,27 @@
+﻿<!-- a instrução model aponta para uma coleção de objetos do tipo Noticia (IEnumerable) sobre a qual a view irá iterar para desenhar na tela -->
+@model IEnumerable<PortalDeNoticias.Models.Noticia>
+
+@{
+    ViewBag.Title = "Página Inicial";
+}
+
+<!-- faz um laço de iteração sobre a coleção Model -->
+@foreach (var item in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <p class="panel-title">@item.Titulo</p>
+        </div>
+        <div class="panel-body">
+            <p>@(item.Conteudo.Length > 100 ? item.Conteudo.Substring(0, 100) + " ..." : item.Conteudo)</p>
+        </div>
+        <div class="panel-footer">
+            <!-- 
+            Primeiro parâmetro: Texto do link; Segundo parâmetro: Nome da action que irá redirecionar
+            Terceiro parâmetro: objeto anônimo contendo uma propriedade com o mesmo nome do argumento esperado pela action Detalhes
+            Quarto parâmetro: atributos html desse link, no caso o atributo class tem essa classe do bootstrap 
+            -->
+            @Html.ActionLink("Ler mais", "Detalhes", new { id = @item.Id }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
